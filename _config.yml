@@ -9,7 +9,7 @@ highlighter: pygments
 # so be sure to set them if your theme uses them.
 #
 title : MuMuDVB
-tagline: A DVB IPTV free streaming software
+tagline : A DVB IPTV free streaming software
 author :
   name : Brice Dubost
   email : mumudvb@braice.net
@@ -132,3 +132,6 @@ JB :
   #   ./_includes/custom/[HELPER]
   # where [HELPER] is the name of the helper you are overriding.
   
+# Includes an icon in the footer for each user name you enter
+footer-links:
+  github: braice
