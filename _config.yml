@@ -8,14 +8,12 @@ highlighter: pygments
 # Themes are encouraged to use these universal variables 
 # so be sure to set them if your theme uses them.
 #
-title : Jekyll Bootstrap
-tagline: Site Tagline
+title : MuMuDVB
+tagline: A DVB IPTV free streaming software
 author :
-  name : Name Lastname
-  email : blah@email.test
-  github : username
-  twitter : username
-  feedburner : feedname
+  name : Brice Dubost
+  email : mumudvb@braice.net
+  github : braice
 
 # The production_url is only used when full-domain names are needed
 # such as sitemap.txt 
@@ -25,7 +23,7 @@ author :
 # Else if you are pushing to username.github.io, replace with your username.
 # Finally if you are pushing to a GitHub project page, include the project name at the end.
 #
-production_url : http://username.github.io
+production_url : http://braice.github.io
 
 gems: ["jekyll-sitemap"]
 
@@ -83,8 +81,8 @@ JB :
   #
   comments :
     provider : disqus
-    disqus :
-      short_name : jekyllbootstrap
+    disqus : 
+      short_name : mumudvb-braice-net
     livefyre :
       site_id : 123
     intensedebate :
@@ -106,7 +104,7 @@ JB :
     gauges :
         site_id : 'SITE ID'
     google : 
-        tracking_id : 'UA-123-12'
+        tracking_id : 'UA-41389486-1'
     getclicky :
       site_id : 
     mixpanel :
