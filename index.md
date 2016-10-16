@@ -5,6 +5,7 @@ tagline: A DVB IPTV free streaming software
 ---
 {% include JB/setup %}
 
+[//]: # ( ![My helpful screenshot](logo.png){ width: 200px; } )
    
 ## Posts
 
