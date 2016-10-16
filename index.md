@@ -21,4 +21,12 @@ Here's a sample "posts list".
 
 This website is still unfinished. .
 
+## Documentation
+
+You can find the Documentation here [Documentation]({{ site.url }}/documentation/)
+
+## Download
+
+You can download [here]({{ site.url }}/download/)
+
 
