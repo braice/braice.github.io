@@ -19,5 +19,5 @@
 User-agent: *
 Crawl-delay: 10
 # Directories
-Disallow: /assets/dvb_norms/
-# Disallow: /documentation/dvb_norms*
+Disallow: /assets/
+

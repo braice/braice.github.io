@@ -6,3 +6,5 @@ category:
 tags: []
 ---
 {% include JB/setup %}
+
+Hello World, because you need it !
