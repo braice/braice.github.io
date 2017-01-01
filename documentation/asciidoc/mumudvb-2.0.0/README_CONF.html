@@ -1696,6 +1696,13 @@ cellspacing="0" cellpadding="4">
 <td align="left" valign="top"><p class="table"></p></td>
 </tr>
 <tr>
+<td align="left" valign="top"><p class="table">autoconf_sid_list_ignore</p></td>
+<td align="left" valign="top"><p class="table">If you don&#8217;t want to configure all the channels of the transponder in autoconfiguration mode, specify with this option the list of the service ids of the channels you want to exclude from autoconfiguration.</p></td>
+<td align="left" valign="top"><p class="table">empty</p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+</tr>
+<tr>
 <td align="left" valign="top"><p class="table">autoconf_name_template</p></td>
 <td align="left" valign="top"><p class="table">The template for the channel name, ex <code>%number-%name</code></p></td>
 <td align="left" valign="top"><p class="table">empty</p></td>
@@ -1843,6 +1850,12 @@ cellspacing="0" cellpadding="4">
 <td align="left" valign="top"><p class="table">The maximum size of the buffering when writting to a client fails</p></td>
 <td align="left" valign="top"><p class="table">512kBytes</p></td>
 <td align="left" valign="top"><p class="table">in Bytes.</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">playlist_ignore_dead</p></td>
+<td align="left" valign="top"><p class="table">Do we exclude dead channels (no traffic) from playlist?</p></td>
+<td align="left" valign="top"><p class="table">0</p></td>
+<td align="left" valign="top"><p class="table">0 or 1</p></td>
 </tr>
 </tbody>
 </table>
@@ -2117,7 +2130,7 @@ TV3                      (0x0321) 01: PCR == V   V 0x006f A 0x0070 (cat) 0x0072 
 <div id="footnotes"><hr /></div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-10-30 18:34:12 EDT
+Last updated 2017-01-01 17:43:07 EST
 </div>
 </div>
 </body>
