@@ -45,10 +45,10 @@ There are options to set the image size, video bitrate, audio bitrate and more. 
 will run the same stream with an image of size 720x576, using a video bitrate of 844 KBit and an audio bitrate of 32KBit (mono).
 
 Here's another example, transcoding a 1080i HD stream:  
-`rtranscode -a=1 -v=0 -h=3 -t=http://localhost:9082/bysid/108  
+```rtranscode -a=1 -v=0 -h=3 -t=http://localhost:9082/bysid/108  
 Starting to transcode  
 Size: 910x512  VBR: 948K  ABR: 32K AC3  
-Listening on http://127.0.0.1:9080/xyz.mkv`  
+Listening on http://127.0.0.1:9080/xyz.mkv```  
 
 For more comfortable use you can run rtranscode in a simple (curses) menu mode. This requires a channel database file, which is a simple text file containing lines like this  
 Das Erste=http://localhost:9082/bysid/28106 sd1 mpeg 0x66  
@@ -65,12 +65,12 @@ Now I can run rtranscode with this channel database:
 `rtranscode -d=rtl.dat`  
 The main menu will look like this:  
 
-`ABR: 64K (a)  VBR: medium (v)  SD-Size: 360x288 (s)  HD-Size: 768x432 (h)  
+```ABR: 64K (a)  VBR: medium (v)  SD-Size: 360x288 (s)  HD-Size: 768x432 (h)  
 Channels:  
 RTL Television (0)  RTL Regional NRW (1)  RTL HB NDS (2)  
 RTL FS (3)  RTL2 (4)  TOGGO plus (5)  
 SUPER RTL (6)  VOX (7)  RTLNITRO (8)  
-RTLplus (9)  n-tv (10)  RTL HH SH (11)`  
+RTLplus (9)  n-tv (10)  RTL HH SH (11)```  
   
 `Enter a channel number, 'a','v','s','h' or 'q' to quit:`  
 
@@ -100,18 +100,18 @@ good gstreamer1.0-plugins-ugly gstreamer1.0-tools`
 
 For best performance we will overclock the GPU and set the GPU memory to at least 128 MB. Add the following to /boot/config.txt:
 
-`gpu_freq=500  
+```gpu_freq=500  
 force_turbo=1  
-gpu_mem=128`  
+gpu_mem=128```  
 
 (requires a reboot to work).
 
 Installation:
 
-`wget http://steinerdatenbank.de/software/transcoder3.tar.gz  
+```wget http://steinerdatenbank.de/software/transcoder3.tar.gz  
 tar -xzf transcoder3.tar.gz  
 cd transcoder3  
-sudo ./install`  
+sudo ./install```  
 
 Inside the transcoder3 directory you will find a large README file and a comprehensive manual in PDF format. The manual is also available [online](http://steinerdatenbank.de/software/rtranscode_manual.pdf)
 
