@@ -759,7 +759,7 @@ Reviewed by Brice Dubost (<a href="mailto:mumudvb@braice.net">mumudvb@braice.net
 <div class="sectionbody">
 <div class="paragraph"><p>You need at least one service/channel up and running to perform transcoding.</p></div>
 <div class="paragraph"><p>you have multiple choices to configure MuMuDVB, please refer to the main documentation for more details.</p></div>
-<div class="paragraph"><p>An example configuration is provided here for "Almajd channels" on BadrSat (26.0E):</p></div>
+<div class="paragraph"><p>An example configuration is provided here for "example channels" on SomeSat (26.0E):</p></div>
 <div class="listingblock">
 <div class="content">
 <pre><code>unicast=1
@@ -807,26 +807,26 @@ MaxClients 200
 #max bandwith to process
 MaxBandwidth 1000000
 CustomLog -
-#almajd01 channel feed configuration
-&lt;Feed almajd01.ffm&gt;
+#tvfeed01 channel feed configuration
+&lt;Feed tvfeed01.ffm&gt;
 #specify the temporary file to use to dump the stream to FFserver
-File /tmp/almajd01.ffm
+File /tmp/tvfeed01.ffm
 FileMaxSize 1000K
 &lt;/Feed&gt;
 #all others feed's is similar;
-&lt;Feed almajd02.ffm&gt;
-File /tmp/almajd02.ffm
+&lt;Feed tvfeed02.ffm&gt;
+File /tmp/tvfeed02.ffm
 FileMaxSize 1000K
 &lt;/Feed&gt;
-&lt;Feed almajd03.ffm&gt;
-File /tmp/almajd03.ffm
+&lt;Feed tvfeed03.ffm&gt;
+File /tmp/tvfeed03.ffm
 FileMaxSize 1000K
 &lt;/Feed&gt;
-#Almajd01 Stream Definition
+#Tvfeed01 Stream Definition
 #note the .asf reference, we're encapsulating our stream in ASF format. please check FFmpeg documentation for other formats.
-&lt;Stream almajd01.asf&gt;
-#referencing the previously defined feed, Almajd01
-Feed almajd01.ffm
+&lt;Stream tvfeed01.asf&gt;
+#referencing the previously defined feed, Tvfeed01
+Feed tvfeed01.ffm
 #specify the streaming format
 Format asf
 #prevent looping on a live channel, this is a continuous stream and not a file.
@@ -847,8 +847,8 @@ AudioChannels 2
 AudioSampleRate 24000
 &lt;/Stream&gt;
 #all others stream is similar.
-&lt;Stream almajd02.asf&gt;
-Feed almajd02.ffm
+&lt;Stream tvfeed02.asf&gt;
+Feed tvfeed02.ffm
 Format asf
 NoLoop
 VideoCodec mpeg4
@@ -864,8 +864,8 @@ AudioBitRate 48
 AudioChannels 2
 AudioSampleRate 24000
 &lt;/Stream&gt;
-&lt;Stream almajd03.asf&gt;
-Feed almajd03.ffm
+&lt;Stream tvfeed03.asf&gt;
+Feed tvfeed03.ffm
 Format asf
 NoLoop
 VideoCodec mpeg4
@@ -906,7 +906,7 @@ AudioSampleRate 24000
 <div class="paragraph"><p>after starting the FFserver, run the following:</p></div>
 <div class="listingblock">
 <div class="content">
-<pre><code>ffmpeg -i udp://@239.100.0.0:1234 http://192.168.100.100/almajd01.ffm</code></pre>
+<pre><code>ffmpeg -i udp://@239.100.0.0:1234 http://192.168.100.100/tvfeed01.ffm</code></pre>
 </div></div>
 <div class="paragraph"><p>This line have to be changed according to your configuration where the first part is the access path to the UDP channel (the @ after udp:// specifies that the channel have to be accessed in multicast), the second part corresponds to the path defined in your ffserver configuration.</p></div>
 <div class="paragraph"><p>You need multiple FFmpeg instances, one per channel.</p></div>
@@ -914,7 +914,7 @@ AudioSampleRate 24000
 Note that you can auto start FFMpeg per feed by adding the following inside your feed definition:
 launch <code>ffmpeg -i udp://@X.X.X.X:1234</code>
 where X.X.X.X is your Multicast group.</p></div>
-<div class="paragraph"><p>Now the channels can be accessed in unicast on URLs like <code>http://192.168.100.100/almajd01.asf</code></p></div>
+<div class="paragraph"><p>Now the channels can be accessed in unicast on URLs like <code>http://192.168.100.100/tvfeed01.asf</code></p></div>
 <div class="paragraph"><p>Example AAC/H.264 transcoded stream inside a FLV container:</p></div>
 <div class="listingblock">
 <div class="content">
@@ -924,15 +924,15 @@ MaxHTTPConnections 20000
 MaxClients 10000
 MaxBandwidth 1000000
 CustomLog -
-&lt;Feed al-quds.ffm&gt;
-File /tmp/al-quds.ffm
+&lt;Feed other-tvfeed.ffm&gt;
+File /tmp/other-tvfeed.ffm
 FileMaxSize 100M
 ACL allow 127.0.0.1
 launch ffmpeg -i udp://@239.100.1.13:1234
 &lt;/Feed&gt;
 
-&lt;Stream al-quds.flv&gt;
-Feed al-quds.ffm
+&lt;Stream other-tvfeed.flv&gt;
+Feed other-tvfeed.ffm
 Format flv
 AudioBitRate 64
 AudioChannels 2
@@ -967,9 +967,9 @@ AVOptionVideo directpred 1
 AVOptionVideo trellis 1
 AVOptionVideo wpredp 0
 AVOptionVideo flags +global_header
-Title 'Al-quds tv'
-comment 'Al-quds Islamic jihad tv channel'
-author 'Islamic Jihad'
+Title 'Some Great tv'
+comment 'Great tv channel'
+author 'Humanity'
 StartSendOnKey
 &lt;/Stream&gt;
 &lt;Stream stat.html&gt;
@@ -984,8 +984,8 @@ ACL allow 192.168.0.0 192.168.255.255
 <h2 id="_acknowledgements">7. Acknowledgements</h2>
 <div class="sectionbody">
 <div class="paragraph"><p>thank you Brice and Matthias for helping me all the time it is very appreciated</p></div>
-<div class="paragraph"><p>thank to everyone that helped me getting my home brew IPTV up and running, i can watch everywhere, anywhere.</p></div>
-<div class="paragraph"><p>thank to Georgeus roger for helping me with Oscam setup so now i have my channels descrambled.</p></div>
+<div class="paragraph"><p>thank to everyone that helped me getting my home brew IPTV up and running, I can watch everywhere, anywhere.</p></div>
+<div class="paragraph"><p>thank to Georgeus roger for helping me with Oscam setup so now I have my channels descrambled.</p></div>
 <div class="paragraph"><p>if you need any help please don&#8217;t hesitate to contact me on the mailing list!</p></div>
 </div>
 </div>
@@ -994,7 +994,7 @@ ACL allow 192.168.0.0 192.168.255.255
 <div id="footer">
 <div id="footer-text">
 Last updated
- 2013-11-14 17:21:56 EST
+ 2017-12-28 17:11:50 EST
 </div>
 </div>
 </body>
