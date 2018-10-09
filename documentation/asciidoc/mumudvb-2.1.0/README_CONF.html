@@ -887,16 +887,17 @@ cellspacing="0" cellpadding="4">
 </div>
 <div class="sect2">
 <h3 id="_parameters_specific_to_satellite">3.2. Parameters specific to satellite</h3>
+<div class="paragraph"><p>I you want to understand the DiSEqC bytes, please refer to <a href="https://www.eutelsat.com/files/contributed/satellites/pdf/Diseqc/associated%20docs/update_recomm_for_implim.pdf">DiSEqC documentation</a></p></div>
 <div class="tableblock">
 <table rules="all"
 width="80%"
 frame="border"
 cellspacing="0" cellpadding="4">
 <col width="14%" />
-<col width="42%" />
+<col width="35%" />
 <col width="7%" />
-<col width="21%" />
 <col width="14%" />
+<col width="28%" />
 <thead>
 <tr>
 <th align="left" valign="top">Parameter name </th>
@@ -961,11 +962,11 @@ cellspacing="0" cellpadding="4">
 <td align="left" valign="top"><p class="table">The satellite number in case you have multiples lnb, no effect if 0 (only 22kHz tone and 13/18V), send a diseqc message if non 0</p></td>
 <td align="left" valign="top"><p class="table">0</p></td>
 <td align="left" valign="top"><p class="table">1 to 4</p></td>
-<td align="left" valign="top"><p class="table">If you have equipment which support more, please contact. For Unicable 0,1 : position A, 2 position B. Additionaly with JESS/Unicable_II, 3 : position C, 4 : position D.</p></td>
+<td align="left" valign="top"><p class="table">If you have equipment which support more, please contact. For satellite 1: Position A Option A; 2: Position B option A; 3: Position A option B; 4: Position B, Option B. For Unicable 0,1 : position A, 2 position B. Additionaly with JESS/Unicable_II, 3 : position C, 4 : position D.</p></td>
 </tr>
 <tr>
 <td align="left" valign="top"><p class="table">switch_input</p></td>
-<td align="left" valign="top"><p class="table">The switch input number in case you have multiples lnb, overrides sat_number, send a diseqc message if non 0, for unicable, this is the unicable ID</p></td>
+<td align="left" valign="top"><p class="table">The switch input number in case you have multiples lnb, overrides sat_number, send a diseqc message if set, for unicable, this is the unicable ID</p></td>
 <td align="left" valign="top"><p class="table">0</p></td>
 <td align="left" valign="top"><p class="table">0 to 31</p></td>
 <td align="left" valign="top"><p class="table">If you have equipment which support more, please contact</p></td>
@@ -2173,7 +2174,7 @@ TV3                      (0x0321) 01: PCR == V   V 0x006f A 0x0070 (cat) 0x0072 
 <div id="footer">
 <div id="footer-text">
 Last updated
- 2018-09-09 10:49:57 EDT
+ 2018-10-08 19:33:30 EDT
 </div>
 </div>
 </body>
