@@ -22,6 +22,8 @@ If you are curious, you can browse all old MuMuDVB versions on github
 
 ## Raspberry pi
 
+[MuMuDVB 2.1.0 for RPi (October 2018)](http://data.mumudvb.net/release/mumudvb_2.1.0-6-6ae3baa_armhf.deb)
+
 [MuMuDVB 2.1.0 for RPi (July 2017)](http://data.mumudvb.net/release/mumudvb_2.1.0-3-b3c9ae7_armhf.deb)
 
 [MuMuDVB 2.1.0 for RPi (May 2017)](http://data.mumudvb.net/release/mumudvb_2.1.0-2-fa9ff6e_armhf.deb)
