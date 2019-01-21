@@ -8,6 +8,18 @@ description: ""
 
 Author: Guenter Kreidl
 
+# October 2018 update
+
+There is a new transcoder package for the Raspbery Pi, rtranscode 4.0, which does work on both Raspbian Jessie and Stretch.
+
+Please have a look at my online manual for details: [Transcoding Manual](http://steinerdatenbank.de/software/rtranscode4_manual.pdf)
+
+An overview and download instruction can be found in the [RPi forum](https://www.raspberrypi.org/forums/viewtopic.php?t=123876#p835946)
+
+The latest RPi package package also contains MuMuDVB and a tutorial and some scripts to create a MuMuDVB backend and a simple frontend.
+
+
+
 # Transcoding with the Raspberry Pi
 
 The main use of transcoding is to provide a low bandwidth stream which can be served to a large number of clients or across a low bandwidth connection (your internet connection, for example). This is done by decoding the original dvb video stream, optionally reducing the image size and encoding it again, using a more efficient encoder (compared to MPEG 2, for example) or using a lower quality setting. More bandwitdh reduction can be achieved by reducing the number of audio channels and by also transcoding audio to a lower bandwidth.
