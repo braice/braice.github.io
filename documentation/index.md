@@ -10,19 +10,19 @@ description: ""
 
 # MuMuDVB 2.1.0
 
-The documentation for MuMuDVB 2.1 can be found on the following pages (HTML version): 
+The documentation for MuMuDVB 2.1 can be found on the following pages: 
 
-[QUICKSTART](asciidoc/mumudvb-2.1.0/QUICKSTART.html)
+[QUICKSTART](https://github.com/braice/MuMuDVB/blob/mumudvb2/doc/QUICKSTART.asciidoc)
 
-[FAQ](asciidoc/mumudvb-2.1.0/FAQ.html)
+[FAQ](https://github.com/braice/MuMuDVB/blob/mumudvb2/doc/FAQ.asciidoc)
 
-[README](asciidoc/mumudvb-2.1.0/README.html)
+[README](https://github.com/braice/MuMuDVB/blob/mumudvb2/doc/README.asciidoc)
 
-[README for the configuration file](asciidoc/mumudvb-2.1.0/README_CONF.html)
+[README for the configuration file](https://github.com/braice/MuMuDVB/blob/mumudvb2/doc/README_CONF.asciidoc)
 
-[README transcoding](asciidoc/mumudvb-2.1.0/TRANSCODE_EXTERNAL.html)
+[README transcoding](https://github.com/braice/MuMuDVB/blob/mumudvb2/doc/TRANSCODE_EXTERNAL.asciidoc)
 
-[WEBSERVICES](asciidoc/mumudvb-2.1.0/WEBSERVICES.html)
+[WEBSERVICES](https://github.com/braice/MuMuDVB/blob/mumudvb2/doc/WEBSERVICES.asciidoc)
 
 The latest text version of the documentation is avalaible [on Github](https://github.com/braice/MuMuDVB/tree/mumudvb2/doc)
 
