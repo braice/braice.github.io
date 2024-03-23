@@ -1,9 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
     "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
 <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8" />
-<meta name="generator" content="AsciiDoc 8.6.9" />
+<meta name="generator" content="AsciiDoc 9.0.0rc1" />
 <title>Quickstart guide for MuMuDVB</title>
 <style type="text/css">
 /* Shared CSS for AsciiDoc xhtml11 and html5 backends */
@@ -435,7 +436,7 @@ thead, p.table.header {
 p.table {
   margin-top: 0;
 }
-/* Because the table frame attribute is overriden by CSS in most browsers. */
+/* Because the table frame attribute is overridden by CSS in most browsers. */
 div.tableblock > table[frame="void"] {
   border-style: none;
 }
@@ -751,7 +752,8 @@ channel to a different multicast IP. The SAP announces will automatically be gen
 <div class="paragraph"><p>I&#8217;ll take an example for DVB-S (satellite) and DVB-T (terrestrial). DVB-C and ATSC are similar.</p></div>
 <div class="paragraph"><p>I suppose you have one DVB card which is already working, if you have more than
 one card refer to the full documentation.</p></div>
-<div class="paragraph"><p>If you don&#8217;t know your transponder frequencies, have a look to the README_CONF</p></div>
+<div class="paragraph"><p>If you don&#8217;t know your transponder frequencies, have a look to <code>doc/README_CONF.asciidoc</code></p></div>
+<div class="paragraph"><p>If your card supports multiple delivery systems, make sure to set it up with the opiton <code>delivery_system</code>.</p></div>
 </div>
 </div>
 <div class="sect1">
@@ -934,7 +936,7 @@ contact (see the README for getting the e-mail addresses)
 <div id="footer">
 <div id="footer-text">
 Last updated
- 2016-07-17 15:41:07 EDT
+ 2024-03-23 16:36:54 CET
 </div>
 </div>
 </body>

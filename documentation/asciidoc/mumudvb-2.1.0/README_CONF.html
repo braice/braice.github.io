@@ -1,9 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
     "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
 <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8" />
-<meta name="generator" content="AsciiDoc 8.6.9" />
+<meta name="generator" content="AsciiDoc 9.0.0rc1" />
 <title>MuMuDVB - README for the configuration file</title>
 <style type="text/css">
 /* Shared CSS for AsciiDoc xhtml11 and html5 backends */
@@ -435,7 +436,7 @@ thead, p.table.header {
 p.table {
   margin-top: 0;
 }
-/* Because the table frame attribute is overriden by CSS in most browsers. */
+/* Because the table frame attribute is overridden by CSS in most browsers. */
 div.tableblock > table[frame="void"] {
   border-style: none;
 }
@@ -736,7 +737,7 @@ asciidoc.install(2);
 <h1>MuMuDVB - README for the configuration file</h1>
 <span id="author">Brice Dubost</span><br />
 <span id="email"><code>&lt;<a href="mailto:mumudvb@braice.net">mumudvb@braice.net</a>&gt;</code></span><br />
-<span id="revdate">Version 2.0.0</span>
+<span id="revdate">Version 2.1.0</span>
 <div id="toc">
   <div id="toctitle">Table of Contents</div>
   <noscript><p><b>JavaScript must be enabled in your browser to display the table of contents.</b></p></noscript>
@@ -759,8 +760,8 @@ freq=11987</code></pre>
 <div class="paragraph"><p>The configuration file contains two parts</p></div>
 <div class="sect2">
 <h3 id="_common_part">1.1. Common part</h3>
-<div class="paragraph"><p>This is the first part of the configuration file, it contains the parameters needed for tuning the DVB card and the global parameters.</p></div>
-<div class="paragraph"><p>See the <a href="#tuning">tuning</a> section for the list of parameters used to tune the card. and <a href="#other_global">other global parameters</a> section for parameters like autoconfiguration, cam support etc &#8230;</p></div>
+<div class="paragraph"><p>This is the first part of the configuration file, it contains the parameters needed for tuning the DVB card or configuring input source and the global parameters.</p></div>
+<div class="paragraph"><p>See the <a href="#tuning">tuning</a> section for the list of parameters used to tune the card. and <a href="#other_global">other global parameters</a> section for configuring input source(s) and other parameters like autoconfiguration, cam support etc &#8230;</p></div>
 </div>
 <div class="sect2">
 <h3 id="_channels_part">1.2. Channels part</h3>
@@ -876,6 +877,12 @@ cellspacing="0" cellpadding="4">
 <td align="left" valign="top"><p class="table">0 = infinite timeout</p></td>
 </tr>
 <tr>
+<td align="left" valign="top"><p class="table">tuning_no_diff</p></td>
+<td align="left" valign="top"><p class="table">If no channels are streamed, MuMuDVB will start tuning loop after this time (specified in seconds)</p></td>
+<td align="left" valign="top"><p class="table">0</p></td>
+<td align="left" valign="top"><p class="table">0 = do not start tuning</p></td>
+</tr>
+<tr>
 <td align="left" valign="top"><p class="table">check_status</p></td>
 <td align="left" valign="top"><p class="table">Do we check the card status and display a message if lock is lost</p></td>
 <td align="left" valign="top"><p class="table">1</p></td>
@@ -973,9 +980,23 @@ cellspacing="0" cellpadding="4">
 </tr>
 <tr>
 <td align="left" valign="top"><p class="table">switch_type</p></td>
-<td align="left" valign="top"><p class="table">The DiSEqC switch type: Committed &#169;, Uncommitted (N), both (B), uNicable (N), JESS/Unicable_II (J)</p></td>
+<td align="left" valign="top"><p class="table">The DiSEqC switch type: Committed &#169;, Uncommitted (U), both (B), uNicable (N), JESS/Unicable_II (J)</p></td>
 <td align="left" valign="top"><p class="table">C</p></td>
 <td align="left" valign="top"><p class="table">C, c, U, u,B,b N,n,J,j</p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">pin_number</p></td>
+<td align="left" valign="top"><p class="table">Pin number for Unicable switch to protect unicable frequency</p></td>
+<td align="left" valign="top"><p class="table">-1</p></td>
+<td align="left" valign="top"><p class="table">0 to 255, -1 = disabled</p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">diseqc_timing</p></td>
+<td align="left" valign="top"><p class="table">Wait time in ms between DiSEqC message (useful for some switches)</p></td>
+<td align="left" valign="top"><p class="table">15</p></td>
+<td align="left" valign="top"><p class="table">&gt;0</p></td>
 <td align="left" valign="top"><p class="table"></p></td>
 </tr>
 <tr>
@@ -1187,7 +1208,7 @@ cellspacing="0" cellpadding="4">
 <td class="icon">
 <div class="title">Note</div>
 </td>
-<td class="content">VSB 8 is the default modulation for most of the terrestrial ATSC transmission</td>
+<td class="content">8VSB is the default modulation for most of the terrestrial ATSC transmission</td>
 </tr></table>
 </div>
 </div>
@@ -1197,7 +1218,40 @@ cellspacing="0" cellpadding="4">
 <h2 id="other_global">4. Other global parameters</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_various_parameters">4.1. Various parameters</h3>
+<h3 id="_input_sources">4.1. Input sources</h3>
+<div class="paragraph"><p>When DVB-API is not available, it&#8217;s possible to use other MPEG-TS sources for MuMuDVB. The configuration options below explain how to do this.</p></div>
+<div class="tableblock">
+<table rules="all"
+width="80%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<col width="33%" />
+<col width="66%" />
+<thead>
+<tr>
+<th align="left" valign="top">Parameter name </th>
+<th align="left" valign="top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table">read_file_path</p></td>
+<td align="left" valign="top"><p class="table">path to the .ts file or a fifo (created with <code>mkfifo</code> or similar) which will provide MPEGTS data instead of using a DVB card. Note that in case of file input, it&#8217;s not rate limited and will ingest the data as quick as possible. Use fifo and a separate application to ratelimit the transmission.</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">source_addr</p></td>
+<td align="left" valign="top"><p class="table">address to listen on for the unicast or multicast providing ratelimited MPEGTS data. In case of unicast, listen on <code>0.0.0.0</code> for IPv4 or <code>::</code> for IPv6. In case of multicast, provide a valid multicast IP address (either IPv4 or IPv6).</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">source_port</p></td>
+<td align="left" valign="top"><p class="table">The port for unicast/multicast source. Can be anything reasonable. Ports below 1024 will require root access.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_various_parameters">4.2. Various parameters</h3>
 <div class="tableblock">
 <table rules="all"
 width="80%"
@@ -1307,7 +1361,7 @@ cellspacing="0" cellpadding="4">
 </div>
 </div>
 <div class="sect2">
-<h3 id="_packets_sending_parameters">4.2. Packets sending parameters</h3>
+<h3 id="_packets_sending_parameters">4.3. Packets sending parameters</h3>
 <div class="tableblock">
 <table rules="all"
 width="80%"
@@ -1396,7 +1450,7 @@ cellspacing="0" cellpadding="4">
 </div>
 </div>
 <div class="sect2">
-<h3 id="_logs_parameters">4.3. Logs parameters</h3>
+<h3 id="_logs_parameters">4.4. Logs parameters</h3>
 <div class="tableblock">
 <table rules="all"
 width="80%"
@@ -1450,7 +1504,7 @@ cellspacing="0" cellpadding="4">
 </div>
 </div>
 <div class="sect2">
-<h3 id="_multicast_parameters">4.4. Multicast parameters</h3>
+<h3 id="_multicast_parameters">4.5. Multicast parameters</h3>
 <div class="tableblock">
 <table rules="all"
 width="80%"
@@ -1525,7 +1579,7 @@ cellspacing="0" cellpadding="4">
 </div>
 </div>
 <div class="sect2">
-<h3 id="_cam_support_parameters">4.5. CAM support parameters</h3>
+<h3 id="_cam_support_parameters">4.6. CAM support parameters</h3>
 <div class="tableblock">
 <table rules="all"
 width="80%"
@@ -1587,7 +1641,7 @@ _callback</p></td>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_scam_support_parameters">4.6. SCAM support parameters</h3>
+<h3 id="_scam_support_parameters">4.7. SCAM support parameters</h3>
 <div class="tableblock">
 <table rules="all"
 width="80%"
@@ -1648,7 +1702,7 @@ cellspacing="0" cellpadding="4">
 </div>
 </div>
 <div class="sect2">
-<h3 id="_autoconfiguration_parameters">4.7. Autoconfiguration parameters</h3>
+<h3 id="_autoconfiguration_parameters">4.8. Autoconfiguration parameters</h3>
 <div class="tableblock">
 <table rules="all"
 width="80%"
@@ -1751,7 +1805,7 @@ cellspacing="0" cellpadding="4">
 </div>
 </div>
 <div class="sect2">
-<h3 id="_sap_announces_parameters">4.8. SAP announces parameters</h3>
+<h3 id="_sap_announces_parameters">4.9. SAP announces parameters</h3>
 <div class="tableblock">
 <table rules="all"
 width="80%"
@@ -1833,7 +1887,7 @@ cellspacing="0" cellpadding="4">
 </div>
 </div>
 <div class="sect2">
-<h3 id="_http_unicast_parameters">4.9. HTTP unicast parameters</h3>
+<h3 id="_http_unicast_parameters">4.10. HTTP unicast parameters</h3>
 <div class="tableblock">
 <table rules="all"
 width="80%"
@@ -1860,7 +1914,7 @@ cellspacing="0" cellpadding="4">
 </tr>
 <tr>
 <td align="left" valign="top"><p class="table">ip_http</p></td>
-<td align="left" valign="top"><p class="table">the listening ip for http unicast, if you want to listen to all interfaces put 0.0.0.0</p></td>
+<td align="left" valign="top"><p class="table">the listening ip for http unicast, if you want to listen to all interfaces put 0.0.0.0. This option supports IPv6 as well, put <code>::</code> to listen on all IPv6 interfaces.</p></td>
 <td align="left" valign="top"><p class="table">0.0.0.0</p></td>
 <td align="left" valign="top"><p class="table">see the README for more details</p></td>
 </tr>
@@ -1903,165 +1957,66 @@ cellspacing="0" cellpadding="4">
 </tbody>
 </table>
 </div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="channel_parameters">5. Channel parameters</h2>
-<div class="sectionbody">
-<div class="paragraph"><p>Each channel start with a <code>new_channel</code> line.
-All these options if they are used together with autoconfiguration will override the detected values. Eg. if the name is specified with name="my channel" this name will be kept even if autoconfiguration detectes that the service is called <em>euronews</em>.</p></div>
-<div class="paragraph" id="NOTE"><p>The service id must be set with service_id to allow autoconfiguration to detect parameters which are not user specified.</p></div>
-<div class="paragraph"><p>Concerning the PIDs see the <a href="#getpids">getting the PIDs</a> section</p></div>
-<div class="paragraph"><p>The column "Can be detected/autoset" specifies if this parameter can be ommitted while using autoconfiguration</p></div>
-<div class="tableblock">
-<table rules="all"
-width="80%"
-frame="border"
-cellspacing="0" cellpadding="4">
-<col width="12%" />
-<col width="37%" />
-<col width="6%" />
-<col width="12%" />
-<col width="6%" />
-<col width="25%" />
-<thead>
-<tr>
-<th align="left" valign="top">Parameter name </th>
-<th align="left" valign="top">Description </th>
-<th align="left" valign="top"> Default value </th>
-<th align="left" valign="top"> Possible values </th>
-<th align="left" valign="top"> Can be detected/autoset </th>
-<th align="left" valign="top"> Comments</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="left" valign="top"><p class="table">ip</p></td>
-<td align="left" valign="top"><p class="table">multicast (can also be unicast, in raw UDP ) ipv4 where the channel will be streamed</p></td>
-<td align="left" valign="top"><p class="table"></p></td>
-<td align="left" valign="top"><p class="table"></p></td>
-<td align="left" valign="top"><p class="table">Yes</p></td>
-<td align="left" valign="top"><p class="table"></p></td>
-</tr>
-<tr>
-<td align="left" valign="top"><p class="table">ip6</p></td>
-<td align="left" valign="top"><p class="table">multicast (can also be unicast, in raw UDP ) ipv6 where the channel will be streamed</p></td>
-<td align="left" valign="top"><p class="table"></p></td>
-<td align="left" valign="top"><p class="table"></p></td>
-<td align="left" valign="top"><p class="table">Yes</p></td>
-<td align="left" valign="top"><p class="table"></p></td>
-</tr>
-<tr>
-<td align="left" valign="top"><p class="table">port</p></td>
-<td align="left" valign="top"><p class="table">The port</p></td>
-<td align="left" valign="top"><p class="table">1234 or common_port</p></td>
-<td align="left" valign="top"><p class="table"></p></td>
-<td align="left" valign="top"><p class="table">Yes</p></td>
-<td align="left" valign="top"><p class="table">Ports below 1024 needs root rights.</p></td>
-</tr>
-<tr>
-<td align="left" valign="top"><p class="table">unicast_port</p></td>
-<td align="left" valign="top"><p class="table">The HTTP unicast port for this channel</p></td>
-<td align="left" valign="top"><p class="table"></p></td>
-<td align="left" valign="top"><p class="table"></p></td>
-<td align="left" valign="top"><p class="table">Yes</p></td>
-<td align="left" valign="top"><p class="table">Ports below 1024 needs root rights. You need to activate HTTP unicast with <code>ip_http</code></p></td>
-</tr>
-<tr>
-<td align="left" valign="top"><p class="table">sap_group</p></td>
-<td align="left" valign="top"><p class="table">The playlist group for SAP announces</p></td>
-<td align="left" valign="top"><p class="table"></p></td>
-<td align="left" valign="top"><p class="table">string</p></td>
-<td align="left" valign="top"><p class="table">No</p></td>
-<td align="left" valign="top"><p class="table">optionnal</p></td>
-</tr>
-<tr>
-<td align="left" valign="top"><p class="table">pmt_pid</p></td>
-<td align="left" valign="top"><p class="table">Only for scrambled channels without autoconf. The PMT PID for CAM support</p></td>
-<td align="left" valign="top"><p class="table"></p></td>
-<td align="left" valign="top"><p class="table"></p></td>
-<td align="left" valign="top"><p class="table">Yes</p></td>
-<td align="left" valign="top"><p class="table">This option needs to be specified for descrambling the channel. The pid will be added to the pid list if ommitted</p></td>
-</tr>
-<tr>
-<td align="left" valign="top"><p class="table">service_id</p></td>
-<td align="left" valign="top"><p class="table">The service id (program number), only for autoconfiguration, or rewrite (PAT or SDT) see README for more details</p></td>
-<td align="left" valign="top"><p class="table"></p></td>
-<td align="left" valign="top"><p class="table"></p></td>
-<td align="left" valign="top"><p class="table">NO</p></td>
-<td align="left" valign="top"><p class="table">Mandatory for autodetection of the other parameters</p></td>
-</tr>
-<tr>
-<td align="left" valign="top"><p class="table">name</p></td>
-<td align="left" valign="top"><p class="table">The name of the channel. Will be used for /var/run/mumudvb/channels_streamed_adapter%d_tuner%d, logging and SAP announces</p></td>
-<td align="left" valign="top"><p class="table"></p></td>
-<td align="left" valign="top"><p class="table"></p></td>
-<td align="left" valign="top"><p class="table">Yes</p></td>
-<td align="left" valign="top"><p class="table">templates %name %number %lcn %2lcn can be used, other may be added if necessary</p></td>
-</tr>
-<tr>
-<td align="left" valign="top"><p class="table">pids</p></td>
-<td align="left" valign="top"><p class="table">The PIDs list, separated by spaces</p></td>
-<td align="left" valign="top"><p class="table"></p></td>
-<td align="left" valign="top"><p class="table"></p></td>
-<td align="left" valign="top"><p class="table">Yes</p></td>
-<td align="left" valign="top"><p class="table">some pids are always sent (PAT CAT EIT SDT TDT NIT), see README for more details</p></td>
-</tr>
-<tr>
-<td align="left" valign="top"><p class="table">oscam</p></td>
-<td align="left" valign="top"><p class="table">Do we activate software descrambling for this channel</p></td>
-<td align="left" valign="top"><p class="table">0</p></td>
-<td align="left" valign="top"><p class="table">0 or 1</p></td>
-<td align="left" valign="top"><p class="table">No</p></td>
-<td align="left" valign="top"><p class="table"></p></td>
-</tr>
-<tr>
-<td align="left" valign="top"><p class="table">ring_buffer_size</p></td>
-<td align="left" valign="top"><p class="table">number of ts packets in ring buffer (for software CAM)</p></td>
-<td align="left" valign="top"><p class="table">131072</p></td>
-<td align="left" valign="top"><p class="table">it gets rounded to the value that is power of 2 not lower than it</p></td>
-<td align="left" valign="top"><p class="table">No</p></td>
-<td align="left" valign="top"><p class="table"></p></td>
-</tr>
-<tr>
-<td align="left" valign="top"><p class="table">decsa_delay</p></td>
-<td align="left" valign="top"><p class="table">delay time in us between getting packet and descrambling (for software CAM)</p></td>
-<td align="left" valign="top"><p class="table">4500000</p></td>
-<td align="left" valign="top"><p class="table">max is 10000000</p></td>
-<td align="left" valign="top"><p class="table">No</p></td>
-<td align="left" valign="top"><p class="table"></p></td>
-</tr>
-<tr>
-<td align="left" valign="top"><p class="table">send_delay</p></td>
-<td align="left" valign="top"><p class="table">delay time in us between getting packet and sending (for software CAM)</p></td>
-<td align="left" valign="top"><p class="table">7000000</p></td>
-<td align="left" valign="top"><p class="table">mustn&#8217;t be lower than decsa delay</p></td>
-<td align="left" valign="top"><p class="table">No</p></td>
-<td align="left" valign="top"><p class="table"></p></td>
-</tr>
-<tr>
-<td align="left" valign="top"><p class="table">cam_ask</p></td>
-<td align="left" valign="top"><p class="table">For CAM support, some providers announce scrambled channels as FTA, this parameter force asking the CAM to descramble</p></td>
-<td align="left" valign="top"><p class="table">0</p></td>
-<td align="left" valign="top"><p class="table">0,1</p></td>
-<td align="left" valign="top"><p class="table">No</p></td>
-<td align="left" valign="top"><p class="table"></p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="getpids">6. Get the PID numbers</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="_you_use_autoconfiguration">6.1. You use autoconfiguration</h3>
+<div class="paragraph"><p>HLS parameters</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>[width="80%",cols="2,8,1,5",options="header"]
+|==================================================================================================================
+|Parameter name |Description | Default value |Comments
+|hls |Set this option to one to activate HLS in file mode | 0  |   If using manual channel configurations, service_id is required to work correctly
+|hls_storage_dir |Storage directory for HLS files and playlists | /tmp  |  Any HTTP server can point to that dir and produce HLS stream
+|hls_playlist_name |Name of master playlist | playlist.m3u8  |  Can be used to run multiple instances in one storage dir
+|hls_rotate_count |HLS chunk count in playlist| 2 |  First usable playlist will be generated when all chunks are ready
+|hls_rotate_time |HLS chunk duration in seconds| 10 |
+|hls_rotate_iframe |Try to place I-Frame at beginning of segment| 0 |  With this option set to one chunk rotate will be delayed until reception of I-Frame, but no more than 2*hls_rotate_time
+|==================================================================================================================
+
+
+[[channel_parameters]]
+Channel parameters
+------------------
+
+Each channel start with a `new_channel` line.
+All these options if they are used together with autoconfiguration will override the detected values. Eg. if the name is specified with name="my channel" this name will be kept even if autoconfiguration detectes that the service is called 'euronews'.
+
+[[NOTE]]
+The service id must be set with service_id to allow autoconfiguration to detect parameters which are not user specified.
+
+Concerning the PIDs see the <<getpids,getting the PIDs>> section
+
+The column "Can be detected/autoset" specifies if this parameter can be ommitted while using autoconfiguration
+
+[width="80%",cols="2,6,1,2,1,4",options="header"]
+|==================================================================================================================
+|Parameter name |Description | Default value | Possible values | Can be detected/autoset | Comments
+|ip |multicast (can also be unicast, in raw UDP ) ipv4 where the channel will be streamed | | | Yes |
+|ip6 |multicast (can also be unicast, in raw UDP ) ipv6 where the channel will be streamed | | |  Yes |
+|port | The port | 1234 or common_port | | Yes | Ports below 1024 needs root rights.
+|unicast_port | The HTTP unicast port for this channel | | |  Yes |Ports below 1024 needs root rights. You need to activate HTTP unicast with `ip_http`
+|sap_group |The playlist group for SAP announces | | string |  No |optionnal
+|pmt_pid |Only for scrambled channels without autoconf. The PMT PID for CAM support | | | Yes | This option needs to be specified for descrambling the channel. The pid will be added to the pid list if ommitted
+|service_id |The service id (program number), only for autoconfiguration, or rewrite (PAT or SDT) see README for more details | | | NO | Mandatory for autodetection of the other parameters
+|name | The name of the channel. Will be used for /var/run/mumudvb/channels_streamed_adapter%d_tuner%d, logging and SAP announces | | | Yes | templates %name %number %lcn %2lcn can be used, other may be added if necessary
+|pids | The PIDs list, separated by spaces | | | Yes | some pids are always sent (PAT CAT EIT SDT TDT NIT), see README for more details
+|oscam |Do we activate software descrambling for this channel| 0 | 0 or 1 |No |
+|ring_buffer_size | number of ts packets in ring buffer (for software CAM) | 131072 |it gets rounded to the value that is power of 2 not lower than it|No |
+|decsa_delay | delay time in us between getting packet and descrambling (for software CAM) | 4500000 | max is 10000000 |No |
+|send_delay | delay time in us between getting packet and sending (for software CAM) | 7000000 |  mustn't be lower than decsa delay |No |
+| cam_ask | For CAM support, some providers announce scrambled channels as FTA, this parameter force asking the CAM to descramble | 0 | 0,1| No |
+|==================================================================================================================
+
+
+
+[[getpids]]
+Get the PID numbers
+-------------------
+
+You use autoconfiguration</code></pre>
+</div></div>
 <div class="paragraph"><p>If you use autoconfiguration, you don&#8217;t need to specify any channel and don&#8217;t need any PID, this section does not concern you.</p></div>
 </div>
 <div class="sect2">
-<h3 id="_you_do_not_use_autoconfiguration">6.2. You do not use autoconfiguration</h3>
+<h3 id="_you_do_not_use_autoconfiguration">4.11. You do not use autoconfiguration</h3>
 <div class="paragraph"><p>It is strongly advised to use autoconfiguration as the PIDs may change and manual PID setting need to maintain them. If you don&#8217;t use autoconfiguration because of limitations of the autoconfiguration system pleas contact so we can see how to fix that.</p></div>
 <div class="paragraph"><p>If you don&#8217;t use autoconfiguration (see the README), you have to get the PIDs (Program Identifier) for each channel.</p></div>
 <div class="paragraph"><p>For each channel it is advised to specify at least :
@@ -2072,7 +2027,7 @@ cellspacing="0" cellpadding="4">
 <div class="paragraph"><p>If you don&#8217;t have access to the PIDs via a website like <a href="http://www.kingofsat.net">King Of Sat</a>, the easiest way is to use linuxtv&#8217;s dvb-apps or w_scan.</p></div>
 <div class="paragraph"><p>You don&#8217;t know on which frequency to tune and the channels you can receive. In this case, you can use <a href="#w_scan">w_scan</a> or using <a href="#scan_inital_tuning">scan</a> from dvb-apps if you have an initial tuning config file.</p></div>
 <div class="sect3">
-<h4 id="w_scan">6.2.1. Using w_scan to get an initial tuning file</h4>
+<h4 id="w_scan">4.11.1. Using w_scan to get an initial tuning file</h4>
 <div class="admonitionblock">
 <table><tr>
 <td class="icon">
@@ -2112,7 +2067,7 @@ cellspacing="0" cellpadding="4">
 <div class="paragraph"><p>If you want to use autoconfiguration, this contains all the parameters you need. For example the second row is the frequency.</p></div>
 </div>
 <div class="sect3">
-<h4 id="scan_inital_tuning">6.2.2. Using scan with an initial tuning file</h4>
+<h4 id="scan_inital_tuning">4.11.2. Using scan with an initial tuning file</h4>
 <div class="admonitionblock">
 <table><tr>
 <td class="icon">
@@ -2156,7 +2111,7 @@ TV3                      (0x0321) 01: PCR == V   V 0x006f A 0x0070 (cat) 0x0072 
 <div class="paragraph"><p>MuMuDVB wants the PIDs in decimal, so you have to convert the pids from hexadecimal to decimal.</p></div>
 </div>
 <div class="sect3">
-<h4 id="_scan_only_one_transponder">6.2.3. Scan only one transponder</h4>
+<h4 id="_scan_only_one_transponder">4.11.3. Scan only one transponder</h4>
 <div class="paragraph"><p>You first have to tune the card on the wanted frequency (with <code>tune</code>, <code>szap</code> or <code>tzap</code> for example).</p></div>
 <div class="paragraph"><p>After you use the scan utility:</p></div>
 <div class="listingblock">
@@ -2174,7 +2129,7 @@ TV3                      (0x0321) 01: PCR == V   V 0x006f A 0x0070 (cat) 0x0072 
 <div id="footer">
 <div id="footer-text">
 Last updated
- 2018-10-08 19:33:30 EDT
+ 2024-03-23 16:36:54 CET
 </div>
 </div>
 </body>

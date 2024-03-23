@@ -1,9 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
     "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
 <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8" />
-<meta name="generator" content="AsciiDoc 8.6.9" />
+<meta name="generator" content="AsciiDoc 9.0.0rc1" />
 <title>MuMuDVB - FAQ (Frequently asked questions)</title>
 <style type="text/css">
 /* Shared CSS for AsciiDoc xhtml11 and html5 backends */
@@ -435,7 +436,7 @@ thead, p.table.header {
 p.table {
   margin-top: 0;
 }
-/* Because the table frame attribute is overriden by CSS in most browsers. */
+/* Because the table frame attribute is overridden by CSS in most browsers. */
 div.tableblock > table[frame="void"] {
   border-style: none;
 }
@@ -736,25 +737,13 @@ asciidoc.install(2);
 <h1>MuMuDVB - FAQ (Frequently asked questions)</h1>
 <span id="author">Brice Dubost</span><br />
 <span id="email"><code>&lt;<a href="mailto:mumudvb@braice.net">mumudvb@braice.net</a>&gt;</code></span><br />
-<span id="revdate">Version 2.0.0</span>
+<span id="revdate">Version 2.1.0</span>
 <div id="toc">
   <div id="toctitle">Table of Contents</div>
   <noscript><p><b>JavaScript must be enabled in your browser to display the table of contents.</b></p></noscript>
 </div>
 </div>
 <div id="content">
-<div id="preamble">
-<div class="sectionbody">
-<div class="admonitionblock">
-<table><tr>
-<td class="icon">
-<div class="title">Note</div>
-</td>
-<td class="content">An HTML version of this file is available on <a href="http://www.mumudvb.net">MuMuDVB&#8217;s website</a>.</td>
-</tr></table>
-</div>
-</div>
-</div>
 <div class="sect1">
 <h2 id="_what_limits_the_number_of_transponders_i_can_stream">1. What limits the number of transponders I can stream ?</h2>
 <div class="sectionbody">
@@ -781,7 +770,7 @@ asciidoc.install(2);
 <div class="sect1">
 <h2 id="_special_satellite_bands">4. Special satellite Bands</h2>
 <div class="sectionbody">
-<div class="paragraph"><p>MuMuDVB supports satellites in the Ku band, with universal or standard LNBs. Support for satellites in the S or C band is implemented via the use of the lo_frequency option. See <code>doc/README_CONF.txt</code> (<a href="README_CONF.html">HTML version</a>).</p></div>
+<div class="paragraph"><p>MuMuDVB supports satellites in the Ku band, with universal or standard LNBs. Support for satellites in the S or C band is implemented via the use of the lo_frequency option. See <code>doc/README_CONF.asciidoc</code>.</p></div>
 </div>
 </div>
 <div class="sect1">
@@ -800,7 +789,7 @@ For VLC, you must specify the PMT PID in addition to the audio and video PIDs. T
 </p>
 </li>
 </ul></div>
-<div class="paragraph"><p>If you want to stick to manual mode, you can use the verbose mode of VLC (<code>vlc -v</code>) and you&#8217;ll see a line like: <code>[00000269] ts demuxer debug:   * number=1025 pid=110</code> You&#8217;ll have the PMT PID associated with your program number. You can also use dvbsnoop, or see how to find PIDs in <code>doc/README_CONF.txt</code> (<a href="README_CONF.html">HTML version</a>).</p></div>
+<div class="paragraph"><p>If you want to stick to manual mode, you can use the verbose mode of VLC (<code>vlc -v</code>) and you&#8217;ll see a line like: <code>[00000269] ts demuxer debug:   * number=1025 pid=110</code> You&#8217;ll have the PMT PID associated with your program number. You can also use dvbsnoop, or see how to find PIDs in <code>doc/README_CONF.asciidoc</code>.</p></div>
 </div>
 </div>
 <div class="sect1">
@@ -1136,7 +1125,7 @@ This might be highly vendor dependent support of IEEE 802.3x, as most equipment 
 <div id="footer">
 <div id="footer-text">
 Last updated
- 2015-08-23 13:09:31 EDT
+ 2024-03-23 16:36:54 CET
 </div>
 </div>
 </body>

@@ -1,9 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
     "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
 <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8" />
-<meta name="generator" content="AsciiDoc 8.6.9" />
+<meta name="generator" content="AsciiDoc 9.0.0rc1" />
 <title>MuMuDVB - README</title>
 <style type="text/css">
 /* Shared CSS for AsciiDoc xhtml11 and html5 backends */
@@ -435,7 +436,7 @@ thead, p.table.header {
 p.table {
   margin-top: 0;
 }
-/* Because the table frame attribute is overriden by CSS in most browsers. */
+/* Because the table frame attribute is overridden by CSS in most browsers. */
 div.tableblock > table[frame="void"] {
   border-style: none;
 }
@@ -745,14 +746,6 @@ asciidoc.install(2);
 <div id="content">
 <div id="preamble">
 <div class="sectionbody">
-<div class="admonitionblock">
-<table><tr>
-<td class="icon">
-<div class="title">Note</div>
-</td>
-<td class="content">An HTML version of this file is availaible on <a href="http://www.mumudvb.net">MuMuDVB&#8217;s website</a>.</td>
-</tr></table>
-</div>
 <div class="imageblock">
 <div class="content">
 <img src="http://mumudvb.net/logo.png" alt="http://mumudvb.net/logo.png" />
@@ -884,7 +877,12 @@ Support for RTP headers (only for multicast)
 </li>
 <li>
 <p>
-CAM menu access while streaming (using a web/AJAX interface - see WEBSERVICES.txt and CAM_menu_interface.png for screenshot)
+Support for HLS file output
+</p>
+</li>
+<li>
+<p>
+CAM menu access while streaming (using a web/AJAX interface - see WEBSERVICES.asciidoc and CAM_menu_interface.png for screenshot)
 </p>
 </li>
 <li>
@@ -900,6 +898,11 @@ Flexible configuration mechanism using templates
 <li>
 <p>
 Support for embedded platforms based on UCLIBC and ANDROID
+</p>
+</li>
+<li>
+<p>
+Support for UDP unicast/multicast input in the absense of a DVB card
 </p>
 </li>
 </ul></div>
@@ -942,9 +945,11 @@ $ make
 <div class="content">
 <pre><code>  --enable-cam-support    CAM support (default enabled)
   --enable-scam-support   SCAM support (default enabled) (see note below)
+  --enable-arib-support   Build support for ARIB STD-B24 character decoding (specific to ISDB-T in Japan)
   --enable-coverage       build for test coverage (default disabled)
   --enable-duma           Debbuging DUMA library (default disabled)
-  --enable-android        Support for Android (default disabled)</code></pre>
+  --enable-android        Support for Android (default disabled)
+  --disable-dvb-support   Build without Linux DVB-API support, even on systems where the headers are present</code></pre>
 </div></div>
 <div class="admonitionblock">
 <table><tr>
@@ -974,6 +979,14 @@ In the case of fedora, the dvb-apps package does not contains the headers, you h
 <div class="title">Note</div>
 </td>
 <td class="content">The SCAM support depends on libdvbcsa from videolan. The configure script will detect automatically the presence of these libraries and deactivate the SCAM support if one of them is not present. It needs also trunk version of oscam to get control words. Oscam configuration is described below in section concerning software descrambling v2 inside mumudvb.</td>
+</tr></table>
+</div>
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">The ARIB STD-B24 support depends on libaribb24. The configure script will automatically detect it&#8217;s presence and enable <code>--japan</code> runtime option to enable character set translation.</td>
 </tr></table>
 </div>
 <div class="admonitionblock">
@@ -1022,7 +1035,7 @@ In the case of fedora, the dvb-apps package does not contains the headers, you h
 <div class="sect1">
 <h2 id="_usage">5. Usage</h2>
 <div class="sectionbody">
-<div class="paragraph"><p>The documentation for configuration file syntax is in <code>doc/README_CONF.txt</code> (<a href="README_CONF.html">HTML version</a>).</p></div>
+<div class="paragraph"><p>The documentation for configuration file syntax is in <code>doc/README_CONF.asciidoc</code>.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="listingblock">
 <div class="content">
@@ -1049,6 +1062,9 @@ mumudvb [options] --config config_file</code></pre>
 
 --server_id
         The server id (for autoconfiguration, overrided by the configuration file)
+
+-j, --japan
+        Enable support for decoding ARIB STD-B24 character encoding in SI/EPG (only if built with libaribb24 support)
 
 -h, --help
         Show help
@@ -1220,7 +1236,7 @@ cellspacing="0" cellpadding="4">
 <h5 id="_other_options_ip_port">Other options: Ip, port</h5>
 <div class="paragraph"><p>You can also use templates for specifying the ip addresses or the port, for example if you want to use the service identifier (unique channel number in the transponder) in your ip address, you can use <code>autoconf_ip4=239.42.%sid_hi.%sid_lo</code>.
 Maybe you will notice different transponders having different channels with the same service identifier, you can then use other template to make your IP unique <code>autoconf_ip4=239.10*%server+%card.%sid_hi.%sid_lo</code>.</p></div>
-<div class="paragraph"><p>Please refer to <code>doc/README_CONF.txt</code> (<a href="README_CONF.html">HTML version</a>) in the section "Autoconfiguration parameters" to see which options accept which templates</p></div>
+<div class="paragraph"><p>Please refer to <code>doc/README_CONF.asciidoc</code> in the section "Autoconfiguration parameters" to see which options accept which templates</p></div>
 <div class="paragraph"><p>Other keywords can be easily added if necessary, please contact if you have particular needs.</p></div>
 </div>
 </div>
@@ -1288,7 +1304,7 @@ ip=239.42.42.2</code></pre>
 <div class="paragraph"><p>The SAP announces will be only sent for alive channels. When a channel goes down, MuMuDVB will stop sending announces for this channel, until it goes back.</p></div>
 <div class="sect2">
 <h3 id="_asking_mumudvb_to_generate_sap_announces">7.1. Asking MuMuDVB to generate SAP announces</h3>
-<div class="paragraph"><p>For sending SAP announces you have to add <code>sap=1</code> to your config file. The other parameters concerning the sap announces are documented in the <code>doc/README_CONF.txt</code> file (<a href="README_CONF.html">HTML version</a>).</p></div>
+<div class="paragraph"><p>For sending SAP announces you have to add <code>sap=1</code> to your config file. The other parameters concerning the sap announces are documented in the <code>doc/README_CONF.asciidoc</code> file.</p></div>
 <div class="sect3">
 <h4 id="_sap_announces_and_full_autoconfiguration">7.1.1. SAP announces and full autoconfiguration</h4>
 <div class="paragraph"><p>If you use full autoconfiguration, you can use the keyword <em>%type</em> in the sap_default_group option. This keyword will be replaced by the type of the channel: Television or Radio.</p></div>
@@ -1633,7 +1649,7 @@ To enable you have to add to global options
 scam_support=1
 on program options add
 oscam=1
-Other setting are documented at <code>doc/README_CONF.txt</code> (<a href="README_CONF.html">HTML version</a>), there is also a configuration example available at <code>configuration_examples/oscam.conf</code></p></div>
+Other setting are documented at <code>doc/README_CONF.asciidoc</code>, there is also a configuration example available at <code>configuration_examples/oscam.conf</code></p></div>
 <div class="paragraph"><p>If channel has a lot of bandwidth it may be needed to extend ring buffer size.</p></div>
 <div class="paragraph"><p>If cw&#8217;s don&#8217;t get in time defined as decsa delay(default 500000us=0.5s), you may try to extend it (decsa_delay max is 10000000, and send_delay should be lower than decsa_delay, because we can&#8217;t send descrambled packets befor they&#8217;re being descrambled) for example:</p></div>
 <div class="listingblock">
@@ -1827,7 +1843,7 @@ vlc -vvv --ipv6 udp://@\[ff15::1\]:1234</code></pre>
 <div class="paragraph"><p>MuMuDVB can send it&#8217;s logs to the console, to a file or via syslog. It can also be several of these channels. The formatting of the logs can also be adjusted.</p></div>
 <div class="paragraph"><p>By default, the logs are sent to the console if not daemonized and via syslog otherwise.</p></div>
 <div class="paragraph"><p>If the logs are sent to a file, you can ask MuMuDVB to flush the file using the SIGHUP signal.</p></div>
-<div class="paragraph"><p>For more detail about these features see <code>doc/README_CONF.txt</code> (<a href="README_CONF.html">HTML version</a>).</p></div>
+<div class="paragraph"><p>For more detail about these features see <code>doc/README_CONF.asciidoc</code>.</p></div>
 </div>
 </div>
 <div class="sect1">
@@ -1940,7 +1956,7 @@ udp://192.168.2.101:1239</code></pre>
 <div id="footer">
 <div id="footer-text">
 Last updated
- 2018-10-08 18:19:10 EDT
+ 2024-03-23 16:36:54 CET
 </div>
 </div>
 </body>
