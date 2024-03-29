@@ -36,20 +36,5 @@ You can find some of the norms used to write MuMuDVB in the page: [DVB norms](dv
 If you want to transcode with a Raspberry Pi, please have a look [here](trmumu)
 
 
-# MuMuDVB 2.0.0
-
-The documentation for MuMuDVB 2 can be found on the following pages (HTML version): 
-
-[QUICKSTART](asciidoc/mumudvb-2.0.0/QUICKSTART.html)
-
-[FAQ](asciidoc/mumudvb-2.0.0/FAQ.html)
-
-[README](asciidoc/mumudvb-2.0.0/README.html)
-
-[README for the configuration file](asciidoc/mumudvb-2.0.0/README_CONF.html)
-
-[README transcoding](asciidoc/mumudvb-2.0.0/TRANSCODE_EXTERNAL.html)
-
-[WEBSERVICES](asciidoc/mumudvb-2.0.0/WEBSERVICES.html)
 
 
