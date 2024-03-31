@@ -32,16 +32,6 @@ For a detailled features list, please refer to the documentation
 
 IP Multicast is a technique for one to many communication over an IP infrastructure. It scales to a larger receiver population by not requiring prior knowledge of who or how many receivers there are. Multicast utilizes network infrastructure efficiently by requiring the source to send a packet only once, even if it needs to be delivered to a large number of receivers. The nodes in the network take care of replicating the packet to reach multiple receivers only where necessary.
 
-## News
-
-Here is some news (please forgive the emptiness of the new website)
-
-<ul class="posts">
-  {% for post in site.posts %}
-    <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a></li>
-  {% endfor %}
-</ul>
-
 # Download
 
 For downloading MuMuDVB please go [here]({{ site.url }}/download/)
